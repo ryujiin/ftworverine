@@ -1,7 +1,7 @@
 <template lang="pug">
-.catalogo
-  .title Este es el Dash
-  v-card
-    v-card-title
-      h1 enrique
+.dashboard
+  .content-bg()
+  v-container
+    v-card.mt-2()
+      .title Dashboard
 </template>

@@ -1,18 +1,17 @@
 <template lang="pug">
 .page
-  ToolbarNav
-  SideMenu
-  router-view
+  HeaderApp
+  v-content
+    router-view
 </template>
 
 <script>
 import { mapMutations } from 'vuex'
-import ToolbarNav from '@/components/ToolbarNav.vue'
-import SideMenu from '@/components/SideMenu.vue'
+import HeaderApp from '@/components/Header.vue'
 
 export default {
   components: {
-    ToolbarNav, SideMenu
+    HeaderApp
   },
   data () {
     return {

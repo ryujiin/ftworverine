@@ -1,7 +1,6 @@
 <template lang="pug">
 v-app
-  v-content
-    router-view
+  router-view
 </template>
 
 <script>
@@ -37,3 +36,13 @@ export default {
   }
 }
 </script>
+
+<style lang="stylus">
+
+.content-bg{
+  width: 100%;
+  height: 185px;
+  background: linear-gradient(45deg, #303f9f, #7b1fa2) !important;
+  position: absolute;
+}
+</style>

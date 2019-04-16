@@ -1,50 +1,58 @@
 <template lang="pug">
-v-navigation-drawer(stateless v-model="getSideMenu" absolute dark temporary)
-  v-list
-    v-list-tile
+v-list
+  v-list-tile
+    v-list-tile-action
+      v-icon dashboard
+    v-list-tile-title(@click="navegar('home')") Inicio
+  v-list-group(:prepend-icon="link.icon" v-for="link in menu" :key="link.name")
+    template(v-slot:activator)
+      v-list-tile
+        v-list-tile-title {{link.name}}
+    v-list-tile( v-for="(inv, i) in link.children" :key="i" @click="navegar(inv.linkName)")
       v-list-tile-action
-        v-icon home
-      v-list-tile-title Inicio
-    v-list-group(prepend-icon="account_circle" value="true")
-      template(v-slot:activator)
-        v-list-tile
-          v-list-tile-title Catalogo
-      v-list-group(no-action sub-group value="true")
-        template(v-slot:activator)
-          v-list-tile
-            v-list-tile-title Productos
-        v-list-tile( v-for="(admin, i) in admins" :key="i" @click="")
-          v-list-tile-title(v-text="admin[0]")
-          v-list-tile-action
-            v-icon(v-text="admin[1]")
-      v-list-group(no-action sub-group value="true")
-        template(v-slot:activator)
-          v-list-tile
-            v-list-tile-title Mercaderia
-        v-list-tile( v-for="(crud, i) in cruds" :key="i" @click="")
-          v-list-tile-title(v-text="crud[0]")
-          v-list-tile-action
-            v-icon(v-text="crud[1]")
+        v-icon(small) radio_button_unchecked
+      v-list-tile-title {{inv.name}}
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
-
 export default {
-  computed: {
-    ...mapGetters(['getSideMenu'])
-  },
   data: () => ({
-    admins: [
-      ['Management', 'people_outline'],
-      ['Settings', 'settings']
-    ],
-    cruds: [
-      ['Create', 'add'],
-      ['Read', 'insert_drive_file'],
-      ['Update', 'update'],
-      ['Delete', 'delete']
+    menu: [
+      {
+        name: 'Inventario',
+        children: [
+          { name: 'Productos', linkName: 'InveProductos' },
+          { name: 'Servicios', linkName: 'InveProductos' },
+          { name: 'Insumos', linkName: 'InveProductos' },
+          { name: 'Almacenes', linkName: 'InveProductos' }
+        ],
+        icon: 'apps'
+      },
+      {
+        name: 'Contabilidad',
+        children: [
+          { name: 'Compras', linkName: 'InveProductos' },
+          { name: 'Ventas', linkName: 'InveProductos' },
+          { name: 'Balances', linkName: 'InveProductos' },
+          { name: 'Finanzas', linkName: 'InveProductos' }
+        ],
+        icon: 'collections_bookmark'
+      },
+      {
+        name: 'Recursos Humanos',
+        children: [
+          { name: 'Personal', linkName: 'InveProductos' },
+          { name: 'Cargo', linkName: 'InveProductos' },
+          { name: 'Permisos', linkName: 'InveProductos' }
+        ],
+        icon: 'people'
+      }
     ]
-  })
+  }),
+  methods: {
+    navegar (link) {
+      this.$router.push({ name: link })
+    }
+  }
 }
 </script>

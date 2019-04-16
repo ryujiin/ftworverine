@@ -20,8 +20,9 @@ export default new Router({
           component: () => import('./views/DashPage.vue')
         },
         {
-          path: 'catalogo',
-          component: () => import('./views/catalogo/Catalogo.vue')
+          path: 'inventario/productos',
+          name: 'InveProductos',
+          component: () => import('./views/inventario/Productos.vue')
         }
       ]
     },
